@@ -1,0 +1,17 @@
+{
+	"name":"ROOKIE Framework",
+	"description":"PHP Framework",
+	"type":"Framework",
+	"keywords":[
+		"php","ROOKIE Framework"
+	],
+	"require":{
+		"php":">=5.4.0",
+		"filp/whoops":"*",
+		"symfony/var-dumper":"*",
+		"duncan3dc/blade": "^4.0",
+		"illuminate/database":"*",
+		"monolog/monolog": "^1.23",
+		"symfony/http-foundation": "^4.0"
+	}
+}
