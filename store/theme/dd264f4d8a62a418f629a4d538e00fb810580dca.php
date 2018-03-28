@@ -34,9 +34,13 @@
 </section>
 <div id="footer">
     <div class="container">
-        <p>&copy; Copyright <?php echo e($system['weblink']); ?> All rights reserved. - <?php echo e($system['count']); ?> - Power By <a target="_blank" href="/" title="<?php echo e($system['website']); ?>"><?php echo e($system['website']); ?></a>
+        <p>&copy; Copyright <?php echo e($system['weblink']); ?> All rights reserved. Power By <a target="_blank" href="/" title="<?php echo e($system['website']); ?>"><?php echo e($system['website']); ?></a>
         </p>
         <p><?php echo e($system['website']); ?>（<?php echo e($system['weblink']); ?>）秉承创建完全绿色无广告福利导航的宗旨，努力打造福利导航第一品牌！</p>
+        <div style="display: none">
+            <?php echo $system['count']; ?>
+
+        </div>
     </div>
 </div>
 <div style="position:absolute; top:50%;left:50%; width:300px; height:auto; margin-top:-150px; margin-left:-150px;background-color: #fff;display: none" id="alertWindow">
@@ -49,14 +53,7 @@
 <script type="application/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 <?php echo $__env->yieldContent('script'); ?>
 <script type="application/javascript">
-    $(document).on('click','#closeWindow',function (data) {
-        $("#alertWindow").fadeOut(100);
-    })
-    function alertWind(text)
-    {
-        $(".content-body").text(text);
-        $("#alertWindow").fadeIn(100);
-    }
+    eval(function(p,a,c,k,e,r){e=function(c){return c.toString(a)};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('$(7).6(\'4\',\'#5\',0(a){$("#1").3(2)})0 8(a){$(".9-b").c(a);$("#1").d(2)}',14,14,'function|alertWindow|100|fadeOut|click|closeWindow|on|document|alertWind|content||body|text|fadeIn'.split('|'),0,{}))
 </script>
 </body>
 </html>
