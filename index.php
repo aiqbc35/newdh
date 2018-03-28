@@ -1,19 +1,12 @@
 <?php
-/**
- * 入口文件
- *1、定义常量
- *2、加载函数库
- *3、启动框架
- */
-  
+
 define('ROOT_PATH',str_replace('\\','/',realpath(dirname(__FILE__).'/'))."/"); //根目录
 define('CORE',ROOT_PATH.'core');     //核心目录
 define('APP',ROOT_PATH.'app');      //项目路径
 define('THEME_ADMIN','/public/admin');   //静态文件
-define('MODULE','app');      
+define('MODULE','app');
 define('DEBUG',true);   //是否开启调试模式,true开启,false关闭
 define('SESSION_STATUS',true);
-
 
 include ROOT_PATH."vendor/autoload.php";
 

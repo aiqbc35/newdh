@@ -124,7 +124,7 @@ class Log
 			mkdir($filePath,0777,true);
 		}
 		$logObject = new Logger('Rookie-Framework');
-		$file =  $filePath . '/log_' . date('H') . '.log';
+		$file =  $filePath . '/log_' . date('d') . '.log';
 
 		return [
 			'obj' => $logObject,

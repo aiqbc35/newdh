@@ -367,6 +367,16 @@ class ApiController extends core
     }
 
     /**
+     * 凌晨还原来源
+     */
+    public function autoUpateDaySource()
+    {
+
+        $model = new linksModel();
+        $model->saveAll(['source'=>0]);
+    }
+
+    /**
      * 自动执行更新没小时来源以及创建首页文件
      * @return bool
      */
@@ -374,7 +384,6 @@ class ApiController extends core
     {
 
         $date = date('Y-m-d',time());
-        //$date = '2018-03-27';
         $status = 0;
 
         $model = new linkSourceModel();

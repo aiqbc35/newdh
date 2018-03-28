@@ -72,6 +72,16 @@ class linksModel extends model
     }
 
     /**
+     * 更新所有
+     * @param $data
+     * @return int
+     */
+    public function saveAll($data)
+    {
+        return $this->db->table(self::$table)->update($data);
+    }
+
+    /**
      * 查询所有
      * @return \Illuminate\Support\Collection
      */

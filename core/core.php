@@ -35,11 +35,14 @@ class core
                 $actionStr = explode('?',$action);
                 $action = $actionStr[0];
             }
+            if (!method_exists($ctrl,$action)) {
+			    Log::debug('路由找不到方法:' . $action);
+                jump('/404.html');
+            }
 			$ctrl->$action();
 		}else{
             Log::debug('找不到控制器'.$ctrlClass . ';文件地址：' . $contrlFile . '文件是否存在:' . (var_dump($contrlFile) ? 1 : 0));
-			throw new \Exception("找不到控制器:".$ctrlClass);
-			exit();
+            jump('/404.html');
 		}
 	}
 
