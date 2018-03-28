@@ -19,6 +19,6 @@
         @endsection
         @section('script')
             <script type="application/javascript">
-                eval(function(p,a,c,k,e,r){e=function(c){return c.toString(a)};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('$(2(){$(\'#f\').m(2(){7 b=$("#c").g();6(b==\'\'){4(\'邮箱不能为空\');3 5}6(!8(b)){4(\'请输入正确的邮箱\');3 5}$.d("/e/s",{c:b},2(a){4(a.h);i.j(a)})});2 8(a){7 b=k l("^[a-0-9]+([.o\\\\-]*[a-0-9])*@([a-0-9]+[-a-0-9]*[a-0-9]+.){1,p}[a-0-9]+$");6(!b.q(a)){3 5}r{3 n}}})',29,29,'z0||function|return|alertWind|false|if|var|checkemail||||email|post|Api|signbtn|val|msg|console|log|new|RegExp|click|true|_|63|test|else|subscribe'.split('|'),0,{}))
+                $(function(){$('#signbtn').click(function(){var email=$("#email").val();if(email==''){alertWind('邮箱不能为空');return false}if(!checkemail(email)){alertWind('请输入正确的邮箱');return false}$.post("/Api/subscribe",{email:email},function(data){alertWind(data.msg);console.log(data)})});function checkemail(email){var reg=new RegExp("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$");if(!reg.test(email)){return false}else{return true}}})
             </script>
 @endsection
