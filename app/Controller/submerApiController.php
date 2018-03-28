@@ -77,11 +77,14 @@ class submerApiController extends adminBaseController
 
             $model = new linksSortModel();
 
+            $linkModel = new linksModel();
+
             if (is_array($id) && count($id) > 1) {
 
                 $result = $model->delAll('id',$id);
 
                 if ($result) {
+                    $linkModel->delAll('sort_id',$id);
                     return response('success','删除成功');
                 }else{
                     return response('success','删除失败');
@@ -99,6 +102,7 @@ class submerApiController extends adminBaseController
                 $result = $model->del(['id'=>$id]);
 
                 if ($result) {
+                    $linkModel->del('sort_id',$id);
                     return response('success','删除成功');
                 }else{
                     return response('error','删除失败');

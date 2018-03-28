@@ -43,7 +43,7 @@
                     <a title="编辑"  onclick="x_admin_show('编辑','/submer/link_sort_add/id/{{ $value->id }}',600,400)" href="javascript:;">
                         <i class="layui-icon">&#xe642;</i>
                     </a>
-                    <a title="删除" onclick="member_del(this,{{ $value->id }})" href="javascript:;">
+                    <a title="删除" onclick="member_del(this,'{{ $value->id }}')" href="javascript:;">
                         <i class="layui-icon">&#xe640;</i>
                     </a>
                 </td>
@@ -54,24 +54,25 @@
 
     </div>
     <script>
-        layui.use('laydate', function(){
     /*用户-删除*/
         function member_del(obj,id){
             if (id > 0) {
                 layer.confirm('确认要删除吗？',function(index){
+
                     $.post("/submerApi/delSort", { id: id },function(data){
+
                         if (data.status == 'success') {
                             $(obj).parents("tr").remove();
                             layer.msg(data.msg,{icon:1,time:1000});
                         }else{
                             layer.msg(data.msg);
+                            return false;
                         }
                     });
                 });
             }else{
                 layer.msg('请选择内容');
             }
-            return false;
         }
 
         function delAll (argument) {

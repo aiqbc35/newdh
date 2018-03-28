@@ -39,58 +39,7 @@
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('script'); ?>
             <script type="application/javascript">
-                $(function(){
-                    $('#signbtn').click(function(){
-                       var name = $("#name").val();
-                       var url = $("#url").val();
-                       var email = $("#email").val();
-                       var sort = $("#sort").val();
-                       if (name == '') {
-                           alertWind('网站名称不能为空');
-                            return false;
-                       }
-                       if (url == '') {
-                           alertWind('网站链接不能为空');
-                           return false;
-                       }
-                       if (email == '') {
-                            alertWind('管理邮箱不能为空');
-                            return false;
-                       }
-                       if (!checkUrl(url)) {
-                           alertWind('请输入正确的域名，如：http://xxx.com,http://www.xxx.com');
-                           return false;
-                       }
-                        if (!checkemail(email)) {
-                            alertWind('请输入正确的邮箱');
-                            return false;
-                        }
-                        $.post("/Api/signin", { name:name,url:url,email:email,sort:sort},function(data){
-                            alertWind(data.msg);
-                         });
-
-                    });
-                    function checkemail(email)
-                    {
-                        var reg = new RegExp("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$");
-                        if (!reg.test(email)) {
-                            return false;
-                        }else{
-                            return true;
-                        }
-                    }
-                    function checkUrl(url)
-                    {
-                       var reg = '^(http|https)\\://([a-zA-Z0-9\\.\\-]+(\\:[a-zA-Z0-9\\.&%\\$\\-]+)*@)?((25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9])\\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9]|0)\\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9]|0)\\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[0-9])|([a-zA-Z0-9\\-]+\\.)*[a-zA-Z0-9\\-]+\\.[a-zA-Z]{2,4})(\\:[0-9]+)?(/[^/][a-zA-Z0-9\\.\\,\\?\\\'\\\\/\\+&%\\$#\\=~_\\-@]*)*$';
-                        var objExp=new RegExp(reg);
-                       if (objExp.test(url)) {
-                            return true;
-                       }else{
-                           return false;
-                       }
-                    }
-                })
-
+                $(function(){$('#signbtn').click(function(){var name=$("#name").val();var url=$("#url").val();var email=$("#email").val();var sort=$("#sort").val();if(name==''){alertWind('网站名称不能为空');return false}if(url==''){alertWind('网站链接不能为空');return false}if(email==''){alertWind('管理邮箱不能为空');return false}if(!checkUrl(url)){alertWind('请输入正确的域名，如：http://xxx.com,http://www.xxx.com');return false}if(!checkemail(email)){alertWind('请输入正确的邮箱');return false}$.post("/Api/signin",{name:name,url:url,email:email,sort:sort},function(data){alertWind(data.msg)})});function checkemail(email){var reg=new RegExp("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$");if(!reg.test(email)){return false}else{return true}}function checkUrl(url){var reg='^(http|https)\\://([a-zA-Z0-9\\.\\-]+(\\:[a-zA-Z0-9\\.&%\\$\\-]+)*@)?((25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9])\\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9]|0)\\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9]|0)\\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[0-9])|([a-zA-Z0-9\\-]+\\.)*[a-zA-Z0-9\\-]+\\.[a-zA-Z]{2,4})(\\:[0-9]+)?(/[^/][a-zA-Z0-9\\.\\,\\?\\\'\\\\/\\+&%\\$#\\=~_\\-@]*)*$';var objExp=new RegExp(reg);if(objExp.test(url)){return true}else{return false}}})
             </script>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('index.layout', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

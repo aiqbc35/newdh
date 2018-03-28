@@ -37,7 +37,7 @@ class indexController extends \core\core
 	public function signIn()
     {
         $sortModel = new linksSortModel();
-        $sort = $sortModel->all();
+        $sort = $sortModel->get('type',0);
         $system = $this->cacheSystem();
         $this->display('index.signin',[
             'sort' => $sort,
@@ -62,7 +62,7 @@ class indexController extends \core\core
     public function updateUrl()
     {
         $sortModel = new linksSortModel();
-        $sort = $sortModel->all();
+        $sort = $sortModel->get('type',0);
         $system = $this->cacheSystem();
         $this->display('index.updateurl',[
             'sort' => $sort,

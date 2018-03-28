@@ -19,6 +19,27 @@ class linksSortModel extends model
     }
 
     /**
+     * 根据条件获取
+     * @param $key
+     * @param $value
+     * @return bool|\Illuminate\Support\Collection|mixed
+     */
+    public function get($key,$value)
+    {
+        if (empty($key)) {
+            return false;
+        }
+        $result = $this->db->table(self::$table)
+            ->where($key,'=',$value)
+            ->get();
+        if (count($result) == 1) {
+            return $result[0];
+        }else{
+            return $result;
+        }
+    }
+
+    /**
      * 根据ID查询
      * @param $id
      * @return bool|\Illuminate\Database\Eloquent\Model|null|object|static
