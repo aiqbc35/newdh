@@ -7,6 +7,7 @@ use app\Model\linksModel;
 use app\Model\linkSourceModel;
 use app\Model\linksSortModel;
 use app\Model\subscribeModel;
+use app\Model\systemModel;
 use core\core;
 use core\lib\Log;
 use core\lib\session;
@@ -365,10 +366,15 @@ class ApiController extends core
         return $surec;
     }
 
+    /**
+     * 自动执行更新没小时来源以及创建首页文件
+     * @return bool
+     */
     public function autoSoturce()
     {
 
         $date = date('Y-m-d',time());
+        //$date = '2018-03-27';
         $status = 0;
 
         $model = new linkSourceModel();
@@ -396,16 +402,28 @@ class ApiController extends core
         foreach ($newlinks as $vu){
 
             $linkModel->save(['id'=>$vu['id']],['source'=>$vu['source']]);
-            $model->save('links_id',$vu['id'],['status',1]);
+            $model->save('links_id',$vu['id'],['status'=>1]);
         }
 
         $this->createHtml();
     }
 
-
+    /**
+     * 创建首页文件
+     * @return bool
+     */
     private function createHtml()
     {
-        $indexUrl = $_SERVER['REQUEST_SCHEME'] . '://' .$_SERVER['HTTP_HOST'] . '/index/createindex';
+
+        $systemModel = new systemModel();
+
+        $result = $systemModel->get();
+
+        if ($result->newlink == '') {
+            return false;
+        }
+
+        $indexUrl = $result->newlink . '/index/createindex';
 
         $index = file_get_contents($indexUrl);
 

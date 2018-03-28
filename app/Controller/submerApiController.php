@@ -6,6 +6,7 @@ namespace app\Controller;
 use app\Model\linksModel;
 use app\Model\linksSortModel;
 use app\Model\systemModel;
+use core\lib\session;
 
 class submerApiController extends adminBaseController
 {
@@ -251,6 +252,10 @@ class submerApiController extends adminBaseController
             $result = $model->save($data);
 
             if ($result) {
+
+                $session = new session();
+                $session->del('system');
+
                 return response('success','保存成功');
             }else{
                 return response('error','保存失败');

@@ -33,9 +33,12 @@
 </section>
 <div id="footer">
     <div class="container">
-        <p>&copy; Copyright {{ $system['weblink'] }} All rights reserved. - {{ $system['count'] }} - Power By <a target="_blank" href="/" title="{{ $system['website'] }}">{{ $system['website'] }}</a>
+        <p>&copy; Copyright {{ $system['weblink'] }} All rights reserved. Power By <a target="_blank" href="/" title="{{ $system['website'] }}">{{ $system['website'] }}</a>
         </p>
         <p>{{ $system['website'] }}（{{ $system['weblink'] }}）秉承创建完全绿色无广告福利导航的宗旨，努力打造福利导航第一品牌！</p>
+        <div style="display: none">
+            {!! $system['count'] !!}
+        </div>
     </div>
 </div>
 <div style="position:absolute; top:50%;left:50%; width:300px; height:auto; margin-top:-150px; margin-left:-150px;background-color: #fff;display: none" id="alertWindow">

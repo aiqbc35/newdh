@@ -12,7 +12,7 @@ class indexController extends \core\core
 {
 
 
-	public function index()
+	public function createindex()
 	{
 
         $sortModel = new linksSortModel();
@@ -93,6 +93,8 @@ class indexController extends \core\core
             return $data;
         }
     }
+
+
 
     /**
      * 数据格式化

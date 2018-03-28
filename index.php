@@ -33,7 +33,6 @@ if (SESSION_STATUS) {
     session_start();
 }
 
-
 //函数库
 include CORE.'/common/function.php';
 

@@ -11,6 +11,7 @@ class route
 
 	public function __construct()
 	{
+
 		if (isset($_SERVER['REQUEST_URI']) && $_SERVER['REQUEST_URI'] != '/') {
 
 			$path = $_SERVER['REQUEST_URI'];
@@ -39,7 +40,12 @@ class route
 				$i = $i + 2;
 			}
 
-		}else{
+		}else if (isset($_SERVER['argv'][1]) && $_SERVER['argv'][1] != '') {
+            $this->contrl = $_SERVER['argv'][1];
+            $action = isset($_SERVER['argv'][2]) ? $_SERVER['argv'][2] : 'index';
+            $this->action = $action;
+
+        }else{
 			$this->contrl = conf::get('CONTROLLER','route');
 			$this->action = conf::get('ACTION','route');
 		}
