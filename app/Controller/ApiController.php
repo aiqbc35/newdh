@@ -8,6 +8,7 @@ use app\Model\linkSourceModel;
 use app\Model\linksSortModel;
 use app\Model\subscribeModel;
 use core\core;
+use core\lib\Log;
 use core\lib\session;
 
 class ApiController extends core
@@ -363,5 +364,63 @@ class ApiController extends core
         }
         return $surec;
     }
+
+    public function autoSoturce()
+    {
+
+        $date = date('Y-m-d',time());
+        $status = 0;
+
+        $model = new linkSourceModel();
+        $sourceAll = $model->dateCountStatus($date,$status);
+        if (count($sourceAll) < 1) {
+            return false;
+        }
+
+        $linksId = array_column(json_decode($sourceAll,true),'links_id');
+
+        $linkModel = new linksModel();
+        $links = $linkModel->findWhereIn('id',$linksId);
+
+        $newlinks = [];
+
+        foreach ($links as $key=>$value){
+            $newlinks[$key]['id'] = $value->id;
+            foreach ($sourceAll as $v){
+                if ($value->id == $v->links_id) {
+                    $newlinks[$key]['source'] = $value->source + $v->total;
+                }
+            }
+        }
+
+        foreach ($newlinks as $vu){
+
+            $linkModel->save(['id'=>$vu['id']],['source'=>$vu['source']]);
+            $model->save('links_id',$vu['id'],['status',1]);
+        }
+
+        $this->createHtml();
+    }
+
+
+    private function createHtml()
+    {
+        $indexUrl = $_SERVER['REQUEST_SCHEME'] . '://' .$_SERVER['HTTP_HOST'] . '/index/createindex';
+
+        $index = file_get_contents($indexUrl);
+
+        if (empty($index)) {
+            Log::debug('定时任务获取首页为空');
+        }
+
+        $result = file_put_contents(ROOT_PATH . 'index.html',$index);
+
+        if (!$result) {
+            Log::debug('定时任务创建首页失败');
+        }
+
+    }
+
+
 
 }

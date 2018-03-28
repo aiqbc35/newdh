@@ -37,6 +37,22 @@ class linksModel extends model
     }
 
     /**
+     * 多ID查找
+     * @param $where
+     * @return bool|\Illuminate\Support\Collection
+     */
+    public function findWhereIn($key,$where)
+    {
+        if (empty($where) || $key == '') {
+            return false;
+        }
+
+        return $this->db->table(self::$table)->whereIn($key,$where)
+            ->get();
+
+    }
+
+    /**
      * 修改
      * @param $where
      * @param $data

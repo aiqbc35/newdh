@@ -8,6 +8,22 @@ class linkSourceModel extends model
 {
     private static $table = 'links_source';
 
+
+    /**
+     * 更新
+     * @param $key
+     * @param $value
+     * @param $data
+     * @return bool|int
+     */
+    public function save($key,$value,$data)
+    {
+        if (empty($key) || $value == '' || $data == '') {
+            return false;
+        }
+        return $this->db->table(self::$table)->where($key,$value)->update($data);
+    }
+
     /**
      * 添加
      * @param $data
@@ -21,6 +37,25 @@ class linkSourceModel extends model
 
         return $this->db->table(self::$table)->insert($data);
 
+    }
+
+    /**
+     * 根据时间以及状态查询
+     * @param $date
+     * @param $status
+     * @return bool|\Illuminate\Support\Collection
+     */
+    public function dateCountStatus($date,$status)
+    {
+        if (empty($date) || $status === '') {
+            return false;
+        }
+        return $this->db->table(self::$table)
+            ->select($this->db::raw('count(id) as total, links_id'))
+            ->where('addtime','=',$date)
+            ->where('status','=',$status)
+            ->groupBy('links_id')
+            ->get();
     }
 
     /**
