@@ -23,6 +23,7 @@ class submerApiController extends adminBaseController
            $code = $resuest->get('code');
            $sort = $resuest->get('sorting');
            $id = $resuest->get('id');
+           $type = $resuest->get('type');
 
 
 
@@ -39,7 +40,8 @@ class submerApiController extends adminBaseController
             $data = [
                 'title' => $title,
                 'code' => $code,
-                'sorting' => $sort
+                'sorting' => $sort,
+                'type' => $type
             ];
 
             if ($id) {

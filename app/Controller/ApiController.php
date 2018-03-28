@@ -406,6 +406,7 @@ class ApiController extends core
         }
 
         $this->createHtml();
+        Log::info('定时执行更新来源成功');
     }
 
     /**

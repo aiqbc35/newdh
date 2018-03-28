@@ -1,5 +1,4 @@
-@extends('admin.layout')
-@section('content')
+<?php $__env->startSection('content'); ?>
     <div class="x-body">
         <form class="layui-form">
             <div class="layui-form-item">
@@ -7,7 +6,7 @@
                     <span class="x-red">*</span>名称
                 </label>
                 <div class="layui-input-inline">
-                    <input type="text" id="L_email" name="title" required="" value="@if(isset($data->id)){{ $data->title }}@endif" lay-verify="checktitle"
+                    <input type="text" id="L_email" name="title" required="" value="<?php if(isset($data->id)): ?><?php echo e($data->title); ?><?php endif; ?>" lay-verify="checktitle"
                            autocomplete="off" class="layui-input">
                 </div>
             </div>
@@ -16,7 +15,7 @@
                     <span class="x-red">*</span>简称
                 </label>
                 <div class="layui-input-inline">
-                    <input type="text" id="L_username" name="code" required="" value="@if(isset($data->id)){{ $data->code }}@endif" lay-verify="nikename"
+                    <input type="text" id="L_username" name="code" required="" value="<?php if(isset($data->id)): ?><?php echo e($data->code); ?><?php endif; ?>" lay-verify="nikename"
                            autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid layui-word-aux">
@@ -28,8 +27,8 @@
                     <span class="x-red"></span>类型
                 </label>
                 <div class="layui-input-block">
-                    <input type="radio" name="type" value="0" title="常规" @if(isset($data->id)) @if($data->type == 0) checked @endif @else checked @endif >
-                    <input type="radio" name="type" value="1" title="推荐" @if(isset($data->id) && $data->type == 1) checked @endif >
+                    <input type="radio" name="type" value="0" title="常规" <?php if(isset($data->id)): ?> <?php if($data->type == 0): ?> checked <?php endif; ?> <?php else: ?> checked <?php endif; ?> >
+                    <input type="radio" name="type" value="1" title="推荐" <?php if(isset($data->id) && $data->type == 1): ?> checked <?php endif; ?> >
                 </div>
             </div>
             <div class="layui-form-item">
@@ -37,7 +36,7 @@
                     <span class="x-red">*</span>排序
                 </label>
                 <div class="layui-input-inline">
-                    <input type="text" id="L_pass" name="sorting" required="" value="@if(isset($data->id)){{ $data->sorting }}@else 0 @endif"
+                    <input type="text" id="L_pass" name="sorting" required="" value="<?php if(isset($data->id)): ?><?php echo e($data->sorting); ?><?php else: ?> 0 <?php endif; ?>"
                            autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid layui-word-aux">
@@ -47,7 +46,7 @@
             <div class="layui-form-item">
                 <label for="L_repass" class="layui-form-label">
                 </label>
-                <input type="hidden" name="id" value="@if(isset($data->id)){{ $data->id }}@endif">
+                <input type="hidden" name="id" value="<?php if(isset($data->id)): ?><?php echo e($data->id); ?><?php endif; ?>">
                 <button  class="layui-btn" lay-filter="add" lay-submit="">
                     增加
                 </button>
@@ -94,4 +93,5 @@
 
         });
     </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('admin.layout', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -51,7 +51,7 @@
 <script type="application/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 @yield('script')
 <script type="application/javascript">
-    $(document).on('click','#closeWindow',function(data){$("#alertWindow").fadeOut(100)})function alertWind(text){$(".content-body").text(text);$("#alertWindow").fadeIn(100)}
+    $(document).on('click','#closeWindow',function(data){$("#alertWindow").fadeOut(100)});function alertWind(text){$(".content-body").text(text);$("#alertWindow").fadeIn(100)}
 </script>
 </body>
 </html>

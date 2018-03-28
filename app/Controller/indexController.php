@@ -14,7 +14,6 @@ class indexController extends \core\core
 
 	public function createindex()
 	{
-
         $sortModel = new linksSortModel();
         $sort = $sortModel->all();
 
@@ -109,6 +108,7 @@ class indexController extends \core\core
             $newdata[$value->sort_id]['sort'] = $value->sort_id;
             $newdata[$value->sort_id]['title'] = $value->sorttitle;
             $newdata[$value->sort_id]['code'] = $value->code;
+            $newdata[$value->sort_id]['type'] = $value->type;
             $newdata[$value->sort_id]['data'][$key]['title'] = $value->title;
             $newdata[$value->sort_id]['data'][$key]['link'] = $value->link;
         }

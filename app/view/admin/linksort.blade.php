@@ -24,6 +24,7 @@
                 <th>ID</th>
                 <th>分类名称</th>
                 <th>简称</th>
+                <th>类型</th>
                 <th>排序</th>
                 <th>操作</th></tr>
             </thead>
@@ -36,6 +37,7 @@
                 <td>{{ $value->id }}</td>
                 <td>{{ $value->title }}</td>
                 <td>{{ $value->code }}</td>
+                <td>{{ $value->type }}</td>
                 <td>{{ $value->sorting }}</td>
                 <td class="td-manage">
                     <a title="编辑"  onclick="x_admin_show('编辑','/submer/link_sort_add/id/{{ $value->id }}',600,400)" href="javascript:;">
@@ -53,39 +55,23 @@
     </div>
     <script>
         layui.use('laydate', function(){
-            var laydate = layui.laydate;
-
-            //执行一个laydate实例
-            laydate.render({
-                elem: '#start' //指定元素
-            });
-
-            //执行一个laydate实例
-            laydate.render({
-                elem: '#end' //指定元素
-            });
-        });
     /*用户-删除*/
         function member_del(obj,id){
-
             if (id > 0) {
-
                 layer.confirm('确认要删除吗？',function(index){
-
                     $.post("/submerApi/delSort", { id: id },function(data){
-
                         if (data.status == 'success') {
                             $(obj).parents("tr").remove();
                             layer.msg(data.msg,{icon:1,time:1000});
                         }else{
                             layer.msg(data.msg);
-                            return false;
                         }
                     });
                 });
             }else{
                 layer.msg('请选择内容');
             }
+            return false;
         }
 
         function delAll (argument) {

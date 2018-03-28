@@ -53,7 +53,7 @@
 <script type="application/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 <?php echo $__env->yieldContent('script'); ?>
 <script type="application/javascript">
-    eval(function(p,a,c,k,e,r){e=function(c){return c.toString(a)};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('$(7).6(\'4\',\'#5\',0(a){$("#1").3(2)})0 8(a){$(".9-b").c(a);$("#1").d(2)}',14,14,'function|alertWindow|100|fadeOut|click|closeWindow|on|document|alertWind|content||body|text|fadeIn'.split('|'),0,{}))
+    $(document).on('click','#closeWindow',function(data){$("#alertWindow").fadeOut(100)})function alertWind(text){$(".content-body").text(text);$("#alertWindow").fadeIn(100)}
 </script>
 </body>
 </html>
