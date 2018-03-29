@@ -3,6 +3,7 @@
 - 自助管理链接
 - 自动统计来源，并根据来源多少排序（数据每小时更新）
 - 邮件订阅
+- 多颜色模板
 
 ## 部署
 1、store目录需要0777权限
@@ -19,6 +20,10 @@ location / {
 3、设置定时任务,
 ``` ssh
 crontab -e  #编辑定时任务
-* */1 * * * php /home/wwwroot/index.php Api autoSoturce  #没小时更新一次来源
+*/5 * * * * php /home/wwwroot/index.php Api autoSoturce  #每5分钟更新一次来源
 0 0 * * * php /home/wwwroot/index.php Api autoUpateDaySource  #每天凌晨0点清空当天的来源
+!wq #保存文件
+
+/sbin/service crond reload  #重新加载定时任务
+/sbin/service crond restart  #重启定时任务
 ```

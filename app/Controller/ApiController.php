@@ -309,6 +309,7 @@ class ApiController extends core
             }
             $model = new linksModel();
             $result = $model->findLike('link',$newurl);
+
             if (!isset($result[0])) {
                 return false;
             }
@@ -319,7 +320,7 @@ class ApiController extends core
 
             $isDate = $sourceModel->dateFindLinkToIp($newurl,$date,$ip);
 
-            if ($isDate) {
+            if (count($isDate) >= 1) {
                 return false;
             }
 
@@ -336,6 +337,7 @@ class ApiController extends core
                 $id = $result[0]->id;
                 $where = array('id' => $id);
                 $model->save($where,['status' => 0]);
+                $this->createHtml();
             }
 
         }
@@ -374,6 +376,7 @@ class ApiController extends core
 
         $model = new linksModel();
         $model->saveAll(['source'=>0]);
+        Log::info('凌晨来源清算成功');
     }
 
     /**

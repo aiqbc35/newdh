@@ -72,7 +72,7 @@ class linkSourceModel extends model
         }
         $result = $this->db->table(self::$table)
             ->where('link',$link)
-            ->where('data',$data)
+            ->where('addtime',$data)
             ->where('ip',$ip)
             ->get();
         if (count($result) == 1) {

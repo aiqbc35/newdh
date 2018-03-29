@@ -9,7 +9,7 @@
     <title>{{ $system['website'] }}-收录最全面的福利导航</title>
     <meta name="keywords" content="{{ $system['keyword'] }}">
     <meta name="description" content="{{ $system['descr'] }}">
-    <link rel="stylesheet" id="da-main-css" href="/public/style.css?v0.8" type="text/css" media="all">
+    <link rel="stylesheet" id="da-main-css" href="/public/style.css?v0.9" type="text/css" media="all">
 </head>
 <body class="page page-id-5013 page-template page-template-pagesnav-php" oncontextmenu=self.event.returnValue=false onselectstart="return false">
 <div class="pageheader">

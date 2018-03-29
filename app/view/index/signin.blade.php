@@ -19,7 +19,7 @@
                 </p>
                 <div class="input">
                     <div>网站名称：<input type="text" name="name" id="name" placeholder="最多8个文字！" maxlength="8" class="signinput" style="margin-bottom: 10px;"></div>
-                    <div>网站地址：<input type="text" name="url" id="url" placeholder="请输入网址" class="signinput" style="margin-bottom: 10px;"></div>
+                    <div>网站地址：<input type="text" name="url" id="url" placeholder="网址必须带http://或https://" class="signinput" style="margin-bottom: 10px;"></div>
                     <div>管理邮箱：<input type="email" name="email" id="email" placeholder="请输入管理邮箱" class="signinput">*用于自助修改网站信息</div>         
                     <div>
                         网站分类:

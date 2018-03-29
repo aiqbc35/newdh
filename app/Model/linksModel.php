@@ -91,7 +91,7 @@ class linksModel extends model
             ->leftJoin('sort','links.sort_id','=','sort.id')
             ->where('status','=',0)
             ->orderBy('sort.sorting','asc')
-            ->orderBy('source','asc')
+            ->orderBy('source','desc')
             ->get(['sort.title as sorttitle','sort.type',self::$table.'.title',self::$table.'.link','sort.code',self::$table.'.source',self::$table.'.sort_id']);
         return $result;
     }
