@@ -9,7 +9,14 @@
                     <h2><a href="/#{{ $value['code'] }}">{{ $value['title'] }}</a></h2>
                     <ul class="xoxo blogroll">
                         @foreach($value['data'] as $vu)
-                            <li><a href="{{ $vu['link'] }}" target="_blank">{{ $vu['title'] }}</a></li>
+                            <li><a href="{{ $vu['link'] }}" target="_blank">
+                                    @if(!empty($vu['color']))
+                                        <span style="color:{!! $vu['color'] !!} !important;">{{ $vu['title'] }}</span>
+                                    @else
+                                        {{ $vu['title'] }}
+                                    @endif
+                                </a>
+                            </li>
                         @endforeach
                     </ul>
                 </div>
@@ -24,8 +31,31 @@
                     <h2><a href="/#{{ $value['code'] }}">{{ $value['title'] }}</a></h2>
                     <ul class="xoxo blogroll">
                         @foreach($value['data'] as $vu)
-                            <li><a href="{{ $vu['link'] }}" target="_blank">{{ $vu['title'] }}</a></li>
+                            @if($vu['type'] == 1)
+                                <li>
+                                    <a href="{{ $vu['link'] }}" target="_blank" >
+                                        @if(!empty($vu['color']))
+                                            <span style="color:{!! $vu['color'] !!} !important;">{{ $vu['title'] }}</span>
+                                        @else
+                                            {{ $vu['title'] }}
+                                        @endif
+                                    </a>
+                                </li>
+                                @endif
                         @endforeach
+                            @foreach($value['data'] as $vu)
+                                @if($vu['type'] == 0)
+                                    <li>
+                                        <a href="{{ $vu['link'] }}" target="_blank" >
+                                            @if(!empty($vu['color']))
+                                                <span style="color:{!! $vu['color'] !!} !important;">{{ $vu['title'] }}</span>
+                                            @else
+                                                {{ $vu['title'] }}
+                                            @endif
+                                        </a>
+                                    </li>
+                                @endif
+                            @endforeach
                     </ul>
                 </div>
             @endif

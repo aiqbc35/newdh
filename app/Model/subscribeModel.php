@@ -23,6 +23,21 @@ class subscribeModel extends model
     }
 
     /**
+     * 统计数量
+     * @param $key
+     * @param $value
+     * @return bool|int
+     */
+    public function count($key,$option,$value)
+    {
+        if (empty($key) || $option == '') {
+            return false;
+        }
+
+        return $this->db->table(self::$table)->where($key,$option,$value)->count();
+    }
+
+    /**
      * 新增数据
      * @param $data
      * @return bool

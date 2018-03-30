@@ -4,6 +4,7 @@ namespace app\Controller;
 
 
 use app\Model\linksModel;
+use app\Model\linkSourceModel;
 use app\Model\linksSortModel;
 use app\Model\systemModel;
 use core\lib\session;
@@ -129,6 +130,7 @@ class submerApiController extends adminBaseController
             $status = $request->get('status');
             $id = $request->get('id');
             $sortid = $request->get('sortid');
+            $color = $request->get('color');
 
             if (empty($title) || $link == '') {
                 return response('error','标题或链接不能为空');
@@ -145,21 +147,53 @@ class submerApiController extends adminBaseController
                 'status' => $status,
                 'sort_id' => $sortid,
                 'email' => $email,
-                'addtime' => time()
+                'addtime' => time(),
+                'color' => $color
             ];
 
             $model = new linksModel();
 
             $result = $model->find('title',$title);
 
+            $linksortModel = new linksSortModel();
+
             if (count($result) >= 1 && $result[0]->id != $id) {
-                return response('error','网站名称已存在');
+                $totalsort = $linksortModel->get('type',1);
+
+                if (count($totalsort) > 1) {
+                    $sorttotalid = array_column(json_decode($totalsort,true),'id');
+
+                    if(!in_array($sortid,$sorttotalid)){
+                        return response('error','网站名称已存在');
+                    }
+
+                }else{
+                    if ($sortid != $totalsort) {
+                        return response('error','网站名称已存在');
+                    }
+                }
+
             }
 
             $result = $model->findLike('link',$link);
 
             if (count($result) >= 1 && $result[0]->id != $id) {
-                return response('error','链接已存在');
+
+                $totalsort = $linksortModel->get('type',1);
+
+                if (count($totalsort) > 1) {
+                    $sorttotalid = array_column(json_decode($totalsort,true),'id');
+
+                    if(!in_array($sortid,$sorttotalid)){
+                        return response('error','链接已存在');
+                    }
+
+                }else{
+                    if ($sortid != $totalsort) {
+                        return response('error','链接已存在');
+                    }
+                }
+
             }
 
             if ($id > 0) {
@@ -237,6 +271,8 @@ class submerApiController extends adminBaseController
             $newlink = $request->get('newlink');
             $keyword = $request->get('keyword');
             $descr = $request->get('descr');
+            $img = $request->get('banner_img');
+            $url = $request->get('banner_url');
 
             if (empty($website) || $weblink == '') {
                 return response('error','网站名称或链接不能为空');
@@ -250,7 +286,9 @@ class submerApiController extends adminBaseController
                 'newlink' => $newlink,
                 'email' => $email,
                 'keyword' => $keyword,
-                'descr' => $descr
+                'descr' => $descr,
+                'banner_img' => $img,
+                'banner_url' => $url
             ];
 
             $model = new systemModel();

@@ -42,6 +42,15 @@
                 </div>
             </div>
             <div class="layui-form-item">
+                <label for="L_color" class="layui-form-label">
+                    <span class="x-red"></span>字体颜色
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="L_color" name="color" value="@if(isset($data->id)){{ $data->color }}@endif"
+                           autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
                 <label for="L_status" class="layui-form-label">
                     <span class="x-red"></span>状态
                 </label>
@@ -85,7 +94,7 @@
             //监听提交
             form.on('submit(add)', function(data){
 
-                $.post("/submerApi/linksAdd", { title: data.field.title, link: data.field.link,email:data.field.email,type:data.field.type,status:data.field.status,sortid:data.field.sortid,id:data.field.id },function(e){
+                $.post("/submerApi/linksAdd", { title: data.field.title, link: data.field.link,email:data.field.email,type:data.field.type,status:data.field.status,sortid:data.field.sortid,id:data.field.id,color:data.field.color },function(e){
                     if (e.status == 'success') {
                         layer.alert(e.msg, {icon: 6},function () {
                             var index = parent.layer.getFrameIndex(window.name);

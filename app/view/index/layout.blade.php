@@ -9,14 +9,14 @@
     <title>{{ $system['website'] }}-收录最全面的福利导航</title>
     <meta name="keywords" content="{{ $system['keyword'] }}">
     <meta name="description" content="{{ $system['descr'] }}">
-    <link rel="stylesheet" id="da-main-css" href="/public/style.css?v0.9" type="text/css" media="all">
+    <link rel="stylesheet" id="da-main-css" href="/public/style.css?v0.12" type="text/css" media="all">
 </head>
 <body class="page page-id-5013 page-template page-template-pagesnav-php" oncontextmenu=self.event.returnValue=false onselectstart="return false">
 <div class="pageheader">
     <div class="container">
         <h1><a href="/" title="{{ $system['website'] }}-{{ $system['descr'] }}">{{ $system['website'] }}</a></h1>
         <div class="note">
-            {{ $system['notice'] }}
+            {!! $system['notice'] !!}
         </div>
     </div>
 </div>
@@ -28,6 +28,13 @@
         @endforeach
     </nav>
     <div class="items">
+        @if(!empty($system['banner_img']))
+        <div class="adbannersss">
+            <a href="{{ $system['banner_url'] }}" target="_blank">
+                <img src="{{ $system['banner_img'] }}" data-bd-imgshare-binded="1">
+            </a>
+        </div>
+        @endif
         @yield('content')
     </div>
 </section>

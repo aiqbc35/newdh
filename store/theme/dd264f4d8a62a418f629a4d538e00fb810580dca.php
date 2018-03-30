@@ -9,14 +9,14 @@
     <title><?php echo e($system['website']); ?>-收录最全面的福利导航</title>
     <meta name="keywords" content="<?php echo e($system['keyword']); ?>">
     <meta name="description" content="<?php echo e($system['descr']); ?>">
-    <link rel="stylesheet" id="da-main-css" href="/public/style.css?v0.9" type="text/css" media="all">
+    <link rel="stylesheet" id="da-main-css" href="/public/style.css?v0.12" type="text/css" media="all">
 </head>
 <body class="page page-id-5013 page-template page-template-pagesnav-php" oncontextmenu=self.event.returnValue=false onselectstart="return false">
 <div class="pageheader">
     <div class="container">
         <h1><a href="/" title="<?php echo e($system['website']); ?>-<?php echo e($system['descr']); ?>"><?php echo e($system['website']); ?></a></h1>
         <div class="note">
-            <?php echo e($system['notice']); ?>
+            <?php echo $system['notice']; ?>
 
         </div>
     </div>
@@ -29,6 +29,13 @@
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
     </nav>
     <div class="items">
+        <?php if(!empty($system['banner_img'])): ?>
+        <div class="adbannersss">
+            <a href="<?php echo e($system['banner_url']); ?>" target="_blank">
+                <img src="<?php echo e($system['banner_img']); ?>" data-bd-imgshare-binded="1">
+            </a>
+        </div>
+        <?php endif; ?>
         <?php echo $__env->yieldContent('content'); ?>
     </div>
 </section>

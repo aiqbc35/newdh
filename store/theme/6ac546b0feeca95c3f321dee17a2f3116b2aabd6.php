@@ -8,7 +8,15 @@
                     <h2><a href="/#<?php echo e($value['code']); ?>"><?php echo e($value['title']); ?></a></h2>
                     <ul class="xoxo blogroll">
                         <?php $__currentLoopData = $value['data']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $vu): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <li><a href="<?php echo e($vu['link']); ?>" target="_blank"><?php echo e($vu['title']); ?></a></li>
+                            <li><a href="<?php echo e($vu['link']); ?>" target="_blank">
+                                    <?php if(!empty($vu['color'])): ?>
+                                        <span style="color:<?php echo $vu['color']; ?> !important;"><?php echo e($vu['title']); ?></span>
+                                    <?php else: ?>
+                                        <?php echo e($vu['title']); ?>
+
+                                    <?php endif; ?>
+                                </a>
+                            </li>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </ul>
                 </div>
@@ -23,8 +31,33 @@
                     <h2><a href="/#<?php echo e($value['code']); ?>"><?php echo e($value['title']); ?></a></h2>
                     <ul class="xoxo blogroll">
                         <?php $__currentLoopData = $value['data']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $vu): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <li><a href="<?php echo e($vu['link']); ?>" target="_blank"><?php echo e($vu['title']); ?></a></li>
+                            <?php if($vu['type'] == 1): ?>
+                                <li>
+                                    <a href="<?php echo e($vu['link']); ?>" target="_blank" >
+                                        <?php if(!empty($vu['color'])): ?>
+                                            <span style="color:<?php echo $vu['color']; ?> !important;"><?php echo e($vu['title']); ?></span>
+                                        <?php else: ?>
+                                            <?php echo e($vu['title']); ?>
+
+                                        <?php endif; ?>
+                                    </a>
+                                </li>
+                                <?php endif; ?>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            <?php $__currentLoopData = $value['data']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $vu): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <?php if($vu['type'] == 0): ?>
+                                    <li>
+                                        <a href="<?php echo e($vu['link']); ?>" target="_blank" >
+                                            <?php if(!empty($vu['color'])): ?>
+                                                <span style="color:<?php echo $vu['color']; ?> !important;"><?php echo e($vu['title']); ?></span>
+                                            <?php else: ?>
+                                                <?php echo e($vu['title']); ?>
+
+                                            <?php endif; ?>
+                                        </a>
+                                    </li>
+                                <?php endif; ?>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </ul>
                 </div>
             <?php endif; ?>

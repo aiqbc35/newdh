@@ -9,53 +9,25 @@
                     <thead>
                     <tr>
                         <th>统计</th>
-                        <th>资讯库</th>
-                        <th>图片库</th>
-                        <th>产品库</th>
-                        <th>用户</th>
-                        <th>管理员</th>
+                        <th>链接</th>
+                        <th>订阅</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
                         <td>总数</td>
-                        <td>92</td>
-                        <td>9</td>
-                        <td>0</td>
-                        <td>8</td>
-                        <td>20</td>
+                        <td>{{ $data['countlink'] }}</td>
+                        <td>{{ $data['countsub'] }}</td>
                     </tr>
                     <tr>
                         <td>今日</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                    </tr>
-                    <tr>
-                        <td>昨日</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                    </tr>
-                    <tr>
-                        <td>本周</td>
-                        <td>2</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
+                        <td>{{ $data['daylink'] }}</td>
+                        <td>{{ $data['daysub'] }}</td>
                     </tr>
                     <tr>
                         <td>本月</td>
-                        <td>2</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
+                        <td>{{ $data['yuelink'] }}</td>
+                        <td>{{ $data['yuesub'] }}</td>
                     </tr>
                     </tbody>
                 </table>

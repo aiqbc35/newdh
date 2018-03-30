@@ -4,6 +4,7 @@ namespace app\Controller;
 
 use app\Model\linksModel;
 use app\Model\linksSortModel;
+use app\Model\subscribeModel;
 use app\Model\systemModel;
 use core\lib\session;
 
@@ -102,7 +103,32 @@ class submerController extends adminBaseController
      */
     public function welcome()
     {
-        $this->display('admin.welcome');
+        $linksModel = new linksModel();
+        $countLinks = $linksModel->count('id','!=','');
+
+        $zuotian = strtotime('-1 day',strtotime('23:59:59'));
+        $benyue = strtotime(date("Y-m-1",time()));
+
+        $dayLink = $linksModel->count('addtime','>',$zuotian);
+        $yueLink = $linksModel->count('addtime','>=',$benyue);
+
+        $subModel = new subscribeModel();
+        $countSub = $subModel->count('id','!=','');
+
+        $daySub = $subModel->count('addtime','>',$zuotian);
+        $yueSub = $subModel->count('addtime','>',$benyue);
+
+        $data = [
+            'countlink' => $countLinks,
+            'daylink' => $dayLink,
+            'yuelink' => $yueLink,
+            'countsub' => $countSub,
+            'daysub' => $daySub,
+            'yuesub' => $yueSub
+        ];
+        $this->display('admin.welcome',[
+            'data' => $data
+        ]);
     }
 
     /**

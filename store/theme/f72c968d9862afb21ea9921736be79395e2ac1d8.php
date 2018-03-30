@@ -1,5 +1,4 @@
-@extends('admin.layout')
-@section('content')
+<?php $__env->startSection('content'); ?>
     <div class="x-body">
         <form class="layui-form">
             <div class="layui-form-item">
@@ -8,7 +7,7 @@
                 </label>
                 <div class="layui-input-inline">
                     <input type="text" id="website" name="website" required="" lay-verify="required"
-                           autocomplete="off" class="layui-input" value="{{ $data->website }}">
+                           autocomplete="off" class="layui-input" value="<?php echo e($data->website); ?>">
                 </div>
             </div>
             <div class="layui-form-item">
@@ -17,7 +16,7 @@
                 </label>
                 <div class="layui-input-inline">
                     <input type="text" id="weblink" name="weblink" required="" lay-verify="required"
-                           autocomplete="off" class="layui-input" value="{{ $data->weblink }}">
+                           autocomplete="off" class="layui-input" value="<?php echo e($data->weblink); ?>">
                 </div>
                 <div class="layui-form-mid layui-word-aux">
                     <span class="x-red">*</span>网站永久网址
@@ -29,7 +28,7 @@
                 </label>
                 <div class="layui-input-inline">
                     <input type="text" id="L_email" name="email" required=""
-                           autocomplete="off" class="layui-input" value="{{ $data->email }}">
+                           autocomplete="off" class="layui-input" value="<?php echo e($data->email); ?>">
                 </div>
             </div>
             <div class="layui-form-item">
@@ -38,7 +37,7 @@
                 </label>
                 <div class="layui-input-inline">
                     <input type="text" id="newlink" name="newlink" required="" lay-verify="required"
-                           autocomplete="off" class="layui-input" value="{{ $data->newlink }}">
+                           autocomplete="off" class="layui-input" value="<?php echo e($data->newlink); ?>">
                 </div>
                 <div class="layui-form-mid layui-word-aux">
                     <span class="x-red">*</span>网站友情链接网址
@@ -47,25 +46,25 @@
             <div class="layui-form-item layui-form-text">
                 <label class="layui-form-label">公告</label>
                 <div class="layui-input-block">
-                    <textarea placeholder="请输入内容" class="layui-textarea" name="notice">{{ $data->notice }}</textarea>
+                    <textarea placeholder="请输入内容" class="layui-textarea" name="notice"><?php echo e($data->notice); ?></textarea>
                 </div>
             </div>
             <div class="layui-form-item layui-form-text">
                 <label class="layui-form-label">关键字</label>
                 <div class="layui-input-block">
-                    <textarea placeholder="请输入内容" class="layui-textarea" name="keyword">{{ $data->keyword }}</textarea>
+                    <textarea placeholder="请输入内容" class="layui-textarea" name="keyword"><?php echo e($data->keyword); ?></textarea>
                 </div>
             </div>
             <div class="layui-form-item layui-form-text">
                 <label class="layui-form-label">描述</label>
                 <div class="layui-input-block">
-                    <textarea placeholder="请输入内容" class="layui-textarea" name="descr">{{ $data->descr }}</textarea>
+                    <textarea placeholder="请输入内容" class="layui-textarea" name="descr"><?php echo e($data->descr); ?></textarea>
                 </div>
             </div>
             <div class="layui-form-item layui-form-text">
                 <label class="layui-form-label">统计代码</label>
                 <div class="layui-input-block">
-                    <textarea placeholder="请输入内容" class="layui-textarea" name="count">{{ $data->count }}</textarea>
+                    <textarea placeholder="请输入内容" class="layui-textarea" name="count"><?php echo e($data->count); ?></textarea>
                 </div>
             </div>
             <div class="layui-form-item">
@@ -74,7 +73,7 @@
                 </label>
                 <div class="layui-input-inline">
                     <input type="text" id="banner_img" name="banner_img"
-                           autocomplete="off" class="layui-input" value="{{ $data->banner_img }}">
+                           autocomplete="off" class="layui-input" value="<?php echo e($data->banner_img); ?>">
                 </div>
             </div>
             <div class="layui-form-item">
@@ -83,7 +82,7 @@
                 </label>
                 <div class="layui-input-inline">
                     <input type="text" id="banner_url" name="banner_url" required=""
-                           autocomplete="off" class="layui-input" value="{{ $data->banner_url }}">
+                           autocomplete="off" class="layui-input" value="<?php echo e($data->banner_url); ?>">
                 </div>
             </div>
             <div class="layui-form-item">
@@ -115,4 +114,5 @@
             });
         });
     </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('admin.layout', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

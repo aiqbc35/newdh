@@ -37,6 +37,21 @@ class linksModel extends model
     }
 
     /**
+     * 统计数量
+     * @param $key
+     * @param $value
+     * @return bool|int
+     */
+    public function count($key,$option,$value)
+    {
+        if (empty($key) || $option == '') {
+            return false;
+        }
+
+        return $this->db->table(self::$table)->where($key,$option,$value)->count();
+    }
+
+    /**
      * 多ID查找
      * @param $where
      * @return bool|\Illuminate\Support\Collection
@@ -92,7 +107,7 @@ class linksModel extends model
             ->where('status','=',0)
             ->orderBy('sort.sorting','asc')
             ->orderBy('source','desc')
-            ->get(['sort.title as sorttitle','sort.type',self::$table.'.title',self::$table.'.link','sort.code',self::$table.'.source',self::$table.'.sort_id']);
+            ->get(['sort.title as sorttitle','sort.type',self::$table.'.title',self::$table.'.link','sort.code',self::$table.'.source',self::$table.'.sort_id',self::$table.'.color',self::$table.'.type as sorttype']);
         return $result;
     }
 
