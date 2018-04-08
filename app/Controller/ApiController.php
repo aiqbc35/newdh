@@ -211,7 +211,7 @@ class ApiController extends core
                 'sort' => $value['sort_id']
             ];
                 return $data;
-            },toArray($result));
+            },json_decode($result,true));
 
             $session->set('isupdatetime',$newtime);
             $session->set('linksupdate',$result[0]->email);
@@ -249,6 +249,39 @@ class ApiController extends core
             ];
             $session->set('updateUrlInfo',(array) $result);
             return response('success','',$data);
+        }
+    }
+
+    /**
+     * 前端删除链接
+     */
+    public function deleteLink()
+    {
+        if ($this->request()->isMethod('post')) {
+
+            $id = $this->request()->get('id');
+            if (empty($id)) {
+                return response('error','请选择网站');
+            }
+            $session = new session();
+            if (!$session->has('linksupdate')) {
+                return response('error','您已退出，请重新输入管理邮箱','',404);
+            }
+            $model = new linksModel();
+            $result = $model->findById($id);
+
+            if (!$result) {
+                return response('error','网站不存在','',404);
+            }
+
+            $ret = $model->del('id',$id);
+
+            if ($ret) {
+                return response('success','删除成功');
+            }else{
+                return response('error','删除失败');
+            }
+
         }
     }
 

@@ -17,7 +17,7 @@ function p($data)
  */
 function toArray($object)
 {
-    return json_decode($object,true);
+    return (array) $object;
 }
 
 /**
