@@ -11,7 +11,7 @@
     <meta name="description" content="{{ $system['descr'] }}">
     <link rel="stylesheet" id="da-main-css" href="/public/style.css?v0.12" type="text/css" media="all">
 </head>
-<body class="page page-id-5013 page-template page-template-pagesnav-php" oncontextmenu=self.event.returnValue=false onselectstart="return false">
+<body class="page page-id-5013 page-template page-template-pagesnav-php">
 <div class="pageheader">
     <div class="container">
         <h1><a href="/" title="{{ $system['website'] }}-{{ $system['descr'] }}">{{ $system['website'] }}</a></h1>

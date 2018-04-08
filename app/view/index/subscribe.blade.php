@@ -3,7 +3,7 @@
     <div class="items">
         <div class="item item-0">
             @include('index.mune')
-            <h2>申请收录</h2><div class="page_content">
+            <h2>网址订阅</h2><div class="page_content">
                 <p>	<span style="color:#4C33E5;"><b>欢迎大家使用网址订阅，当我站启用最新网址时将发送最新网址至您订阅的邮箱！</b></span></p>
                 <p>	<span style="color:#0cd7e2;"><b>本站承若：除了发送最新网址，绝不会发送任何信息至您的邮箱！</b></span></p>
                 <p>	<span style="color:#0cd7e2;"><b>本站对外邮箱：{{ $system['email'] }}，邮箱使用范围：广告合作，主动获取最新网址!</b></span></p>
