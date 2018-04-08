@@ -37,6 +37,20 @@ class linksModel extends model
     }
 
     /**
+     * 根据ID查询
+     * @param $id
+     * @return bool|\Illuminate\Database\Eloquent\Model|null|object|static
+     */
+    public function findById($id)
+    {
+        if (empty($id)) {
+            return false;
+        }
+        return $this->db->table(self::$table)->where('id','=',$id)
+            ->first();
+    }
+
+    /**
      * 统计数量
      * @param $key
      * @param $value

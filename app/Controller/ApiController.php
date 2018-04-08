@@ -27,7 +27,7 @@ class ApiController extends core
 
             if ($session->has('signtime')) {
 
-                $stoptime = 300;
+                $stoptime = 30;
 
                 $time = $session->get('signtime');
 
@@ -61,10 +61,6 @@ class ApiController extends core
             }
 
             $model = new linksModel();
-            $isEmail = $model->find('email',$email);
-            if (isset($isEmail[0]) && $isEmail[0] != '') {
-                return response('error','管理员邮箱已存在，请使用新邮箱！');
-            }
 
             $isTitle = $model->findLike('title',$name);
 
@@ -178,7 +174,7 @@ class ApiController extends core
 
             if ($session->has('isupdatetime')) {
 
-                $stoptime = 120;
+                $stoptime = 30;
 
                 $time = $session->get('isupdatetime');
 
@@ -205,17 +201,54 @@ class ApiController extends core
                 return response('error','没有对应的管理邮箱！');
             }
 
-            $data = [
-                'name' => $result[0]->title,
-                'url' => $result[0]->link,
-                'email' => $result[0]->email,
-                'sort' => $result[0]->sort_id
+            $data = array_map(function($value){
+
+                            $data = [
+                'name' => $value['title'],
+                'id' => $value['id'],
+                'url' => $value['link'],
+                'email' => $value['email'],
+                'sort' => $value['sort_id']
             ];
+                return $data;
+            },toArray($result));
+
             $session->set('isupdatetime',$newtime);
-            $session->set('linksupdate',toArray($result[0]));
+            $session->set('linksupdate',$result[0]->email);
 
             return response('success','',$data);
 
+        }
+    }
+
+    /**
+     * 获取网站信息
+     */
+    public function getUpdateUrlOne()
+    {
+        if ($this->request()->isMethod('post')) {
+           $id = $this->request()->get('id');
+            if (empty($id)) {
+                return response('error','请选择需要编辑的网站');
+            }
+            $session = new session();
+            if (!$session->has('linksupdate')) {
+                return response('error','您已退出，请重新输入管理邮箱','',404);
+            }
+            $model = new linksModel();
+            $result = $model->findById($id);
+
+            if (!$result) {
+                return response('error','网站不存在','',404);
+            }
+            $data = [
+                'name' => $result->title,
+                'url' => $result->link,
+                'email' => $result->email,
+                'sort' => $result->sort_id
+            ];
+            $session->set('updateUrlInfo',(array) $result);
+            return response('success','',$data);
         }
     }
 
@@ -231,7 +264,10 @@ class ApiController extends core
             if (!$session->has('linksupdate')) {
                 return response('error','请刷新后重试！','',404);
             }
-            $sessionC = $session->get('linksupdate');
+            if (!$session->has('updateUrlInfo')) {
+                return response('error','请刷新后重试！','',404);
+            }
+            $sessionC = $session->get('updateUrlInfo');
 
             $request = $this->request();
             $name = $request->get('name');

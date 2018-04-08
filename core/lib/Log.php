@@ -119,13 +119,9 @@ class Log
 	 */
 	private static function init()
 	{
-		$filePath = ROOT_PATH . 'store/log/' .date('Y-m-d');
-		if (!is_dir($filePath)) {
-			mkdir($filePath,0777,true);
-		}
+		$filePath = ROOT_PATH . 'store/log/' .date('Y-m');
 		$logObject = new Logger('Rookie-Framework');
 		$file =  $filePath . '/log_' . date('d') . '.log';
-
 		return [
 			'obj' => $logObject,
 			'file' => $file
