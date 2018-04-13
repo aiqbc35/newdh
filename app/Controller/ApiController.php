@@ -9,7 +9,6 @@ use app\Model\linksSortModel;
 use app\Model\subscribeModel;
 use app\Model\systemModel;
 use core\core;
-use core\lib\Log;
 use core\lib\session;
 
 class ApiController extends core
@@ -445,7 +444,6 @@ class ApiController extends core
 
         $model = new linksModel();
         $model->saveAll(['source'=>0]);
-        Log::info('凌晨来源清算成功');
     }
 
     /**
@@ -487,7 +485,6 @@ class ApiController extends core
         }
 
         $this->createHtml();
-        Log::info('定时执行更新来源成功');
     }
 
     /**
@@ -509,15 +506,8 @@ class ApiController extends core
 
         $index = file_get_contents($indexUrl);
 
-        if (empty($index)) {
-            Log::debug('定时任务获取首页为空');
-        }
-
         $result = file_put_contents(ROOT_PATH . 'index.html',$index);
 
-        if (!$result) {
-            Log::debug('定时任务创建首页失败');
-        }
 
     }
 

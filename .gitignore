@@ -2,3 +2,6 @@
 /.user.ini
 /.DS_Store
 /app/view/weijiami
+/store/log
+/store/theme
+/composer.lock

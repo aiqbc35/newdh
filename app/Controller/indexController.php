@@ -5,7 +5,6 @@ use app\Model\adminModel;
 use app\Model\linksModel;
 use app\Model\linksSortModel;
 use app\Model\systemModel;
-use core\lib\Log;
 use core\lib\session;
 
 class indexController extends \core\core
@@ -84,9 +83,6 @@ class indexController extends \core\core
             $result = $model->get();
             $data = toArray($result);
 
-            if (empty($data)) {
-                Log::debug('系统设置缓存为空');
-            }
             $session->set('system',$data);
             return $data;
         }

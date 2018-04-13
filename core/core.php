@@ -1,7 +1,6 @@
 <?php
 namespace core;
 
-use core\lib\Log;
 use duncan3dc\Laravel\BladeInstance;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -25,9 +24,6 @@ class core
 		$contrlFile = APP . '/Controller/' . $ctrlClass . 'Controller.php';
 		$contrlClass = '\\' . MODULE . '\Controller\\' . $ctrlClass . 'Controller';
 
-		Log::info('访问控制器:'.$contrlClass);
-		Log::info('访问方法:'.$action);
-
 		if (file_exists($contrlFile)) {
 			include $contrlFile;
 			$ctrl = new $contrlClass();
@@ -36,12 +32,10 @@ class core
                 $action = $actionStr[0];
             }
             if (!method_exists($ctrl,$action)) {
-			    Log::debug('路由找不到方法:' . $action);
                 jump('/404.html');
             }
 			$ctrl->$action();
 		}else{
-            Log::debug('找不到控制器'.$ctrlClass . ';文件地址：' . $contrlFile . '文件是否存在:' . (var_dump($contrlFile) ? 1 : 0));
             jump('/404.html');
 		}
 	}
@@ -84,7 +78,7 @@ class core
 				mkdir($cachePath,0777,true);
 			}
 			$blade = new BladeInstance(APP . '/view',$cachePath);
-			Log::info('解析模板文件--'. APP . '/view' . $file);
+			$blade = new BladeInstance(APP . '/view',$cachePath);
 			echo $blade->render($file,$data);
 	}
 
