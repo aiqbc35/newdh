@@ -20,7 +20,6 @@ class indexController extends \core\core
         $data = $linksModel->all();
 
         $dataForm = $this->dataFrom($data);
-
         $system = $this->cacheSystem();
 		$this->display('index.index',[
 		    'sort' => $sort,
@@ -108,6 +107,7 @@ class indexController extends \core\core
             $newdata[$value->sort_id]['data'][$key]['link'] = $value->link;
             $newdata[$value->sort_id]['data'][$key]['color'] = $value->color;
             $newdata[$value->sort_id]['data'][$key]['type'] = $value->sorttype;
+            $newdata[$value->sort_id]['data'][$key]['source'] = $value->source;
         }
         return $newdata;
     }

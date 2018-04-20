@@ -28,6 +28,20 @@
         @endforeach
     </nav>
     <div class="items">
+        <div style="text-align: center;color: red;background-color: #fff;">
+            <p>每次来访+1IP，来路越多首页排名越靠前（每日凌晨所有当日来路清零）</p>
+            <p style="font-weight: bold;">
+                <span style="color:#FFBBFF !important;">30次紫色、</span>
+                <span style="color:#B8860B !important;">50次棕色、</span>
+                <span style="color:#EE7600 !important;">100次橘黄、</span>
+                <span style="color:#D02090 !important;">200次粉色、</span>
+                <span style="color:#0000FF !important;">300次蓝色、</span>
+                <span style="color:red !important;">500次红色、</span>
+            </p>
+        </div>
+
+    </div>
+    <div class="items">
         @if(!empty($system['banner_img']))
         <div class="adbannersss">
             <a href="{{ $system['banner_url'] }}" target="_blank">
