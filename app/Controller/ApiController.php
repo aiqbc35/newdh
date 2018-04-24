@@ -498,11 +498,11 @@ class ApiController extends core
 
         $result = $systemModel->get();
 
-        if ($result->newlink == '') {
+        if ($result->weblink == '') {
             return false;
         }
 
-        $indexUrl = $result->newlink . '/index/createindex';
+        $indexUrl = $result->weblink . '/index/createindex';
 
         $index = file_get_contents($indexUrl);
 
